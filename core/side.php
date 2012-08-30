@@ -19,6 +19,12 @@ abstract class P2P_Side {
 	protected $item_type;
 
 	function item_recognize( $arg ) {
+		if ( 'any' == $arg )
+			return new P2P_Item_Any( $arg );
+
+		if ( is_a( $arg, 'P2P_Item_Any' ) )
+			return $arg;
+
 		$class = $this->item_type;
 
 		if ( is_a( $arg, $class ) )
@@ -136,6 +142,12 @@ class P2P_Side_Post extends P2P_Side {
 	}
 
 	function item_recognize( $arg ) {
+		if ( 'any' == $arg )
+			return new P2P_Item_Any( $arg );
+
+		if ( is_a( $arg, 'P2P_Item_Any' ) )
+			return $arg;
+
 		$class = $this->item_type;
 
 		if ( is_a( $arg, $class ) ) {

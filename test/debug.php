@@ -38,18 +38,22 @@ class P2P_Debug {
 			'sortable' => 'any'
 		) );
 
-		add_action('admin_notices', array(new P2P_Debug, 'playground'));
+		/* add_action('admin_notices', array(new P2P_Debug, 'playground')); */
 	}
 
 	function playground() {
-		// TEMPLATE CODE
-		$formation = get_post();
+		$post_id = 10280;
+		$formation = get_post($post_id);
 
 		$chapitres = new WP_Query(array (
 			'connected_type' => 'formations_to_chapitres',
 			'connected_items' => $formation,
 			'nopaging' => true,
 		));
+
+		p2p_type( 'lecons_to_chapitres' )->each_connected( $chapitres );
+
+		_p2p_walk( $chapitres->posts );
 	}
 
 	function posts_to_attachments() {

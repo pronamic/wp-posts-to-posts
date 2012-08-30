@@ -462,6 +462,18 @@ class P2P_Unit_Tests extends WP_UnitTestCase {
 		$this->assertEquals( $GLOBALS['post'], $list[1] );
 	}
 
+	function test_any() {
+		$ctype = p2p_type( 'posts_to_users' );
+
+		$this->factory->post->create_many( 2 );
+		$this->factory->user->create_many( 2 );
+
+		// should return false
+		$candidates = $ctype->get_connected( 'any', array(), 'abstract' );
+
+		debug($candidates);die;
+	}
+
 	private function generate_posts( $type, $count ) {
 		return $this->factory->post->create_many( $count, array(
 			'post_type' => $type

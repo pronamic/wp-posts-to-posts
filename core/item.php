@@ -25,6 +25,14 @@ abstract class P2P_Item {
 }
 
 
+class P2P_Item_Any extends P2P_Item {
+
+	function __get( $key ) {}
+	function get_permalink() {}
+	function get_title() {}
+}
+
+
 class P2P_Item_Post extends P2P_Item {
 
 	function get_title() {
